@@ -1,0 +1,51 @@
+@startuml
+left to right direction
+
+actor "Administrador" as admin
+actor "Atleta" as atleta
+actor "Usuário" as user
+
+rectangle "Sistema Gestão de Olimpiadas" {
+
+    usecase "Cadastrar Competição" as UC1
+    usecase "Editar Competição" as UC2
+    usecase "Cadastrar Local" as UC3
+    usecase "Editar Local" as UC4
+    usecase "Cadastrar Atleta" as UC5
+    usecase "Gerenciar Usuários" as UC6
+
+    usecase "Alocar Local para Competição" as UC7
+    usecase "Validar Conflito de Horário" as UC8
+
+    usecase "Inscrever-se em Competição" as UC9
+
+    usecase "Registrar Resultados" as UC10
+    usecase "Gerar Relatório de Medalhas" as UC11
+
+    usecase "Visualizar Resultados" as UC12
+    usecase "Visualizar Estatísticas" as UC13
+    usecase "Visualizar Medalhas" as UC14
+}
+
+admin --> UC1
+admin --> UC2
+admin --> UC3
+admin --> UC4
+admin --> UC5
+admin --> UC6
+admin --> UC7
+admin --> UC10
+admin --> UC11
+
+UC7 .> UC8 : <<include>>
+
+atleta --> UC9
+atleta --> UC12
+atleta --> UC13
+atleta --> UC14
+
+user --> UC12
+user --> UC13
+user --> UC14
+
+@enduml

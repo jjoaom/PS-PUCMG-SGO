@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+
+cloud "Internet" as Internet
+
+package "Frontend - React" as Frontend {
+
+    package "Pages"
+    package "Components"
+    package "Utils"
+
+}
+
+package "Backend - Kotlin Spring Boot" as Backend {
+
+    package "Controller"
+    package "Service"
+    package "Repository"
+    package "Entity"
+    package "DTO"
+    package "Security"
+
+}
+
+database "PostgreSQL" as PostgreSQL
+
+Internet --> Frontend
+Frontend --> Backend
+Backend --> PostgreSQL
+
+@enduml

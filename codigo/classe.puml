@@ -1,0 +1,77 @@
+@startuml
+
+enum Permission{
+    ATLETA
+    ADMIN
+}
+
+class User{
+    -Long id
+    -Email email
+    -String senha
+    -Permission permissao
+    +autenticar(): void
+    +cadastrar(User usuario): void
+    +alterarSenha()
+    #deletar()
+    #editar()
+}
+
+class Atleta{
+    -String nome
+    -Int idade
+    -Float altura
+    -Float peso
+    -String pais
+    -Medalha medalha
+}
+
+enum Titulo{
+    BRONZE
+    PRATA
+    OURO
+}
+
+class Medalha{
+    -String modalidade
+    -Titulo titulo
+    -Competicao competicao
+}
+
+class Local{
+    -Long id
+    -String rua
+    -Int numero
+    -String bairro
+    -String cidade
+    -String estado
+    -String pais
+    -Boolean disponivel
+    +cadastrar(): void
+    +atualizar(): void
+    +excluir(): void
+}
+
+class Competicao{
+    -Long id
+    -String esporte
+    -Local local
+    -String modalidade
+    -Atleta[] atletas
+    -LocalTime horarioInicial
+    -Duration duração
+    -LocalDate data
+    +criar(): void
+    +atualizar(): void
+    +alocarLocal(Local local): boolean
+    +atribuirAtleta(Atleta atleta): boolean
+}
+
+User <|-- Atleta
+Competicao "1" *-- "many" Atleta : contains
+Medalha o-- Titulo
+Competicao "many" --> "1" Local
+Competicao "many" -- "many" Atleta
+Atleta *-- Medalha
+
+@enduml

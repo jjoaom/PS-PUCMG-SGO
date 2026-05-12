@@ -1,0 +1,35 @@
+@startuml
+
+left to right direction
+skinparam actorStyle awesome
+
+actor User
+
+package "React SPA" as Frontend
+
+() "REST API" as API
+
+package "Backend Kotlin" as Backend{
+    component "Autenticação" as Auth
+    component "Serviço" as Service
+    component "Repository" as Repository
+}
+
+
+database "PostgreSQL" as PostgreSQL
+
+collections "Redis Cache" as Redis
+
+User --> Frontend
+
+Frontend --> API
+
+API --> Auth
+API --> Service
+
+Service --> Repository
+
+Repository --> PostgreSQL
+Repository --> Redis
+
+@enduml
