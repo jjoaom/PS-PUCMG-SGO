@@ -1,5 +1,4 @@
 @startuml
-
 enum Permission{
     ATLETA
     ADMIN
@@ -70,8 +69,8 @@ class Competicao{
 User <|-- Atleta
 Competicao "1" *-- "many" Atleta : contains
 Medalha o-- Titulo
+Permission o-- User
 Competicao "many" --> "1" Local
 Competicao "many" -- "many" Atleta
 Atleta *-- Medalha
-
 @enduml
